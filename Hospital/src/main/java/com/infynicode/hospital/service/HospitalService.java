@@ -66,8 +66,10 @@ public class HospitalService {
         //List<HospitalMO> response = new ArrayList<>();
 
         List<HospitalMO> response= hospitals.stream().map(obj->{
+
             //HospitalMO hospitalMO= hospitalDataMapper.convertEntityToModel(obj);
             HospitalMO hospitalMO= modelMapper.map(obj,HospitalMO.class);
+
             getDepartments(hospitalMO.getId(), hospitalMO);
             return hospitalMO;
         }).collect(Collectors.toList());
@@ -89,8 +91,10 @@ public class HospitalService {
         /*if (!optionalHospital.isPresent()) {
             throw new HospitalException("No Hospital data found...");
         }*/
+
         //HospitalMO hospitalMO= hospitalDataMapper.convertEntityToModel(optionalHospital);
         HospitalMO hospitalMO= modelMapper.map(optionalHospital,HospitalMO.class);
+
         //calling department service to fetch corresponding department for particular hospital.
         getDepartments(hospitalId, hospitalMO);
         return hospitalMO;
